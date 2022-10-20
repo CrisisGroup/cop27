@@ -55,7 +55,7 @@ $(document).ready(function(){
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGFsdG9ud2IiLCJhIjoiOWdSSXFQSSJ9.HZyjh4g3TAAOAncwelv9Vw';
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/daltonwb/cl9h9fqxf001r14nwb5vi3pz0',
+    style: 'mapbox://styles/daltonwb/cl9hhzfwr000115pe24n6iwhc',
     center: [-2.215414, 32.025203],
     zoom: 2.75,
     bearing: 18.4,
@@ -100,7 +100,56 @@ map.on('load', () => {
         'space-color': 'rgba(16, 24, 32, 1.0)'
     });
 
+		map.addSource('finance', {
+				type: 'vector',
+				url: 'mapbox://daltonwb.5mailuk7'
+		});
+
+		map.addLayer({
+				'id': 'finance-layer',
+				'type': 'fill',
+				'source': 'finance',
+				'source-layer': 'globalmap_financing_gap_2020-ciinr3',
+				'paint': {
+					'fill-color': 'rgba(200, 100, 240, 0.4)',
+					'fill-outline-color': 'rgba(200, 100, 240, 1)'
+				}
 });
+
+				map.on('click', 'finance-layer', (e) => {
+					new AnimatedPopup({
+			            offset: [0, -15],
+									openingAnimation: {
+										duration: 200,
+										easing: 'easeInSine',
+										transform: 'scale'
+									},
+									closingAnimation: {
+										duration: 800,
+										easing: 'easeOutBack',
+										transform: 'opacity'
+									}
+			        })
+					.setLngLat(e.lngLat)
+					.setHTML(`<h4 class="infobox-name">${e.features[0].properties.NAME_EN}</h4><p class="infobox-dateline">${e.features[0].properties.gap}</p>`)
+					.addTo(map);
+				});
+
+		// Change the cursor to a pointer when
+		// the mouse is over the states layer.
+		map.on('mouseenter', 'finance-layer', () => {
+			map.getCanvas().style.cursor = 'pointer';
+		});
+
+		// Change the cursor back to a pointer
+		// when it leaves the states layer.
+		map.on('mouseleave', 'finance-layer', () => {
+			map.getCanvas().style.cursor = '';
+		});
+
+});
+
+
 
 </script>
 
