@@ -111,10 +111,27 @@ map.on('load', () => {
 				'source': 'finance',
 				'source-layer': 'globalmap_financing_gap_2020-ciinr3',
 				'paint': {
-					'fill-color': 'rgba(200, 100, 240, 0.4)',
-					'fill-outline-color': 'rgba(200, 100, 240, 1)'
+  				'fill-color': [
+  "interpolate",
+  ["linear"],
+  ["get", "gap"],
+  -58,
+  "#ea8538",
+  -32.8,
+  "#f1ad7a",
+  -20.1,
+  "#f6c9a7",
+  -7.5,
+  "hsl(41, 98%, 82%)",
+  5.2,
+  "#99c7c2",
+  17.8,
+  "#66aba4",
+  43,
+  "hsl(174, 68%, 30%)"
+]
 				}
-});
+		});
 
 				map.on('click', 'finance-layer', (e) => {
 					new AnimatedPopup({
