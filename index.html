@@ -33,19 +33,18 @@ $(document).ready(function(){
 <div class="box">
 
 <h1>Global Climate Financing</h1>
-
-<br />
+<p id="tagline">This map shows per capita financing deficit in 2020, compared to the global mean.</p>
+<p id="tagline">For instance, Iran receives $6.10 USD less than the global average.
+Countries not highlighted did not receive climate funding in 2020.</p>
 <hr />
 <p id="tagline"><strong>LEGEND</strong></p>
+<strong>Click on a country to see more.</strong>
 <ul id="legend">
-<li><div><span style='background-color: #1c7c54; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>1</div></li>
-<li><div><span style='background-color: #e9b44c; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>2</div></li>
-<li><div><span style='background-color: #06225a; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>3</div></li>
-<li><div><span style='background-color: #06b0f2; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>4</div></li>
-<li><div><span style='background-color: #dcece6; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>5</div></li>
-<li><div><span style='background-color: #ff6a69; border: solid 2px #fff; border-radius: 100px; width: 25px; height: 25px;'></span>6</div></li>
+<li><div><span style='background-color: #fee2a4; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>-$8 under average.</div></li>
+<li><div><span style='background-color: #99c7c2; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>$5 over average</div></li>
+<li><div><span style='background-color: #66aba4; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>$17 over average</div></li>
+<li><div><span style='background-color: #188176; border: solid 1px #fff; border-radius: 100px; width: 10px; height: 10px;'></span>$40 over average</div></li>
 </ul>
-<p id="tagline"><strong>TOGGLE LAYERS</strong></p>
 <nav id="menu"></nav>
 </div>
 <div id="map"></div>
@@ -55,7 +54,7 @@ $(document).ready(function(){
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGFsdG9ud2IiLCJhIjoiOWdSSXFQSSJ9.HZyjh4g3TAAOAncwelv9Vw';
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/daltonwb/cl9hhzfwr000115pe24n6iwhc',
+    style: 'mapbox://styles/daltonwb/cl9ye3mme000714oad3b604j0',
     center: [-2.215414, 32.025203],
     zoom: 2.75,
     bearing: 18.4,
@@ -71,12 +70,13 @@ map.addControl(
     })
 );
 
+map.scrollZoom.disable();
 map.addControl(new mapboxgl.FullscreenControl());
 map.addControl(new mapboxgl.NavigationControl({
     visualizePitch: true
 }));
 map.addControl(new mapboxgl.AttributionControl({
-    customAttribution: 'International Crisis Group | Data: '
+    customAttribution: 'International Crisis Group | Data: <a href="https://www.oecd.org/environment/environment-development/climate-change.htm" target="_blank">OECD</a>'
 }));
 
 // PASSIVE ROTATION
@@ -102,14 +102,14 @@ map.on('load', () => {
 
 		map.addSource('finance', {
 				type: 'vector',
-				url: 'mapbox://daltonwb.5mailuk7'
+				url: 'mapbox://daltonwb.5bn27j8n'
 		});
 
 		map.addLayer({
 				'id': 'finance-layer',
 				'type': 'fill',
 				'source': 'finance',
-				'source-layer': 'globalmap_financing_gap_2020-ciinr3',
+				'source-layer': 'global_financing_gap_2020-1fz7de',
 				'paint': {
   				'fill-color': [
   "interpolate",
