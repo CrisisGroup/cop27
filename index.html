@@ -148,7 +148,7 @@ map.on('load', () => {
 									}
 			        })
 					.setLngLat(e.lngLat)
-					.setHTML(`<h4 class="infobox-name">${e.features[0].properties.NAME_EN}</h4><p class="infobox-dateline">$${e.features[0].properties.gap} compared to the global mean.</p>`)
+					.setHTML(`<h4 class="infobox-name">${e.features[0].properties.NAME_EN}</h4><p class="infobox-dateline">$${e.features[0].properties.gap} per capita, compared to the global mean.</p>`)
 					.addTo(map);
 				});
 
