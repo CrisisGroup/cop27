@@ -152,6 +152,13 @@ map.on('load', () => {
 					.addTo(map);
 				});
 
+				map.on('click', ['finance-layer'], (e) => {
+				    map.flyTo({
+				        center: e.lngLat,
+				        curve: 1.5,
+				        speed: 0.3
+				    });
+				});
 		// Change the cursor to a pointer when
 		// the mouse is over the states layer.
 		map.on('mouseenter', 'finance-layer', () => {
