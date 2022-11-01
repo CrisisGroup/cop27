@@ -141,6 +141,7 @@ h4.infobox-name {
     margin-bottom: 10px;
     font-family: 'Inter', sans-serif;
     text-transform: uppercase;
+    line-height: 1.4em;
 }
 
 h4.infobox-date {

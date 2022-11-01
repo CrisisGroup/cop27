@@ -102,14 +102,14 @@ map.on('load', () => {
 
 		map.addSource('finance', {
 				type: 'vector',
-				url: 'mapbox://daltonwb.5bn27j8n'
+				url: 'mapbox://daltonwb.57xvpc59'
 		});
 
 		map.addLayer({
 				'id': 'finance-layer',
 				'type': 'fill',
 				'source': 'finance',
-				'source-layer': 'global_financing_gap_2020-1fz7de',
+				'source-layer': 'map_financing_gap_2020-amon94',
 				'paint': {
   				'fill-color': [
   "interpolate",
@@ -148,7 +148,7 @@ map.on('load', () => {
 									}
 			        })
 					.setLngLat(e.lngLat)
-					.setHTML(`<h4 class="infobox-name">${e.features[0].properties.NAME_EN}</h4><p class="infobox-dateline">${e.features[0].properties.gap}</p>`)
+					.setHTML(`<h4 class="infobox-name">${e.features[0].properties.NAME_EN}</h4><p class="infobox-dateline">$${e.features[0].properties.gap} compared to the global mean.</p>`)
 					.addTo(map);
 				});
 
